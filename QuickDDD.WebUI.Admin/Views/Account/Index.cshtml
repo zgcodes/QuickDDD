@@ -1,0 +1,137 @@
+﻿@model Quick.Application.Admin.UserDto
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>QuickDDD - 后台管理系统</title>
+    <link rel="shortcut icon" href="~/Content/image/icon.png" />
+   @* @Styles.Render("~/bundles/css/bootstrap2")*@
+    <link href="/Content/admin/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/Content/admin/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/admin/css/font.css" rel="stylesheet" />
+    <link href="~/Content/admin/css/matrix-login.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="loginbox">
+        <div class="control-group normal_text">
+            <h3>QuickDDD - 后台管理系统</h3>
+        </div>
+        <form id="loginform" class="form-vertical">
+
+            <div class="control-group">
+                <div class="controls">
+                    <div class="main_input_box">
+                        <span class="add-on bg_lg"><i class="icon-user"></i></span>
+                        @Html.TextBoxFor(m => m.LoginName, new { @class = "span3", @placeholder = "用户名" })
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <div class="main_input_box">
+                        <span class="add-on bg_ly"><i class="icon-lock"></i></span>
+                        @Html.PasswordFor(m => m.LoginPwd, new { @class = "span3", @placeholder = "密码" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                @*<span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">忘记密码？</a></span>*@
+                <span class="pull-right">
+                    <input type="button" class="btn btn-success btn-login" value="登录" />
+                </span>
+            </div>
+        </form>
+
+        <form id="recoverform" class="form-vertical">
+            <p class="normal_text">输入您注册的email地址，我们将给您发送一封邮件说明如何重置密码。</p>
+
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lo"><i class="icon-envelope"></i></span>
+                    <input type="text" placeholder="电子邮件" />
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login">&laquo; 回到登录</a></span>
+                <span class="pull-right"><a class="btn btn-info">发送</a></span>
+            </div>
+        </form>
+    </div>
+
+    @*这里引入js不被显示，模板页引入的js就可以*@
+    @Scripts.Render("~/bundles/js/admin-jq")
+    @Scripts.Render("~/bundles/js/bootstrap2")
+
+     <script src="/Content/admin/js/jquery.min.js"></script>
+
+    <script src="/Content/admin/js/bootstrap.min.js"></script>
+<script src="/Content/admin/js/bootbox.min.js"></script>
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            //登录 发送电子邮件切换
+            $('#to-recover').click(function () {
+
+                $("#loginform").slideUp();
+                $("#recoverform").fadeIn();
+            });
+
+            $('#to-login').click(function () {
+
+                $("#recoverform").hide();
+                $("#loginform").fadeIn();
+            });
+
+            //登录
+            $(".btn-login").click(function () {
+                var loginName = $("#LoginName").val();
+                var loginPwd = $("#LoginPwd").val();
+                if (trim(loginName) == "" || trim(loginPwd) == "") {
+                    bootbox.alert("用户名和密码不能为空");
+                } else {
+                    var actionUrl = "@Url.Action("Login", "Account")";
+                    //var formData = $("#loginform").serialize();
+                    $.ajax({
+                        type: 'post',
+                        url: actionUrl,
+                        data: {
+                            LoginName: loginName,
+                            LoginPwd: loginPwd
+                        },
+                        //JSON.stringify({
+                        //    LoginName: loginName,
+                        //    LoginPwd: loginPwd
+                        //}),
+                        success: function (result) {
+                            if (result.ResultType == 0) {
+                                location.href = "@Url.Action("Index", "Home")";
+                            } else {
+                                bootbox.alert(result.Message);
+                                //alert(result.Message);
+                            }
+                        }
+                    });
+                }
+            });
+
+            //删除左右两端的空格
+            function trim(str) {
+                return str.replace(/(^\s*)|(\s*$)/g, "");
+            }
+        });
+
+    </script>
+</body>
+</html>

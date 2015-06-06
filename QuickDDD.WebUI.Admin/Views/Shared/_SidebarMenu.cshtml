@@ -1,0 +1,28 @@
+﻿@using QuickRMS.Site.Models.AdminCommon
+@model IEnumerable<SidebarMenuModel>
+<div id="sidebar">
+    <a href="#" class="visible-phone"><i class="icon icon-home"></i> 控制面板 </a>
+    <ul>
+        <li class="index"><a href="@Url.Action("Index", "Home", new {Area = "Common"})"><i class="icon icon-home"></i> <span>首页</span></a> </li>
+        @foreach (var parentMenu in Model)
+        {
+            <li class="submenu">
+                <a href="javascript:void(0)">
+                    <i class="icon @parentMenu.Icon"></i> <span>@parentMenu.Name</span>
+                    @if (parentMenu.ChildMenuList.Count > 0)
+                    {
+                        <span class="label label-important">
+                            @parentMenu.ChildMenuList.Count
+                        </span>
+                    }
+                </a>
+                <ul class="childmenu">
+                    @foreach (var childMenu in parentMenu.ChildMenuList)
+                    {
+                        <li><a rel="@childMenu.Controller" href="@Url.Action(childMenu.Action, childMenu.Controller, new { Area = childMenu.Area}, null)"><i class="icon @childMenu.Icon"></i> <span>@childMenu.Name</span></a></li>
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+</div>

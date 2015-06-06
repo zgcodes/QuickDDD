@@ -1,0 +1,29 @@
+﻿<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li class="dropdown" id="profile-messages">
+            <a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text"> @ViewBag.LoginName </span><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="@Url.Action("Index", "Profile", new { Area = "Common" })"><i class="icon-user"></i>个人资料</a></li>
+                <li class="divider"></li>
+                <li><a href="@Url.Action("ChangePwd", "Profile", new { Area = "Common" })"><i class="icon-check"></i>修改密码</a></li>
+                <li class="divider"></li>
+                <li><a href="@Url.Action("SignOut", "Login", new { Area = "Common" })"><i class="icon-key"></i>退出</a></li>
+            </ul>
+        </li>
+        @*<li class="dropdown" id="menu-messages">
+            <a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">信息</span> <span class="label label-important">4</span> <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i>新的信息</a></li>
+                <li class="divider"></li>
+                <li><a class="sInbox" title="" href="#"><i class="icon-envelope"></i>收件箱</a></li>
+                <li class="divider"></li>
+                <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i>发件箱</a></li>
+                <li class="divider"></li>
+                <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i>垃圾箱</a></li>
+            </ul>
+        </li>*@
+        <li class=""><a title="浏览网站" target="_blank" href="@Url.Action("Index", "Home", new { Area = "" })"><i class="icon icon-flag"></i> <span class="text">浏览网站</span></a></li>
+        <li class=""><a title="退出" href="@Url.Action("SignOut", "Login", new { Area = "Common" })"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
+    </ul>
+</div>
+
