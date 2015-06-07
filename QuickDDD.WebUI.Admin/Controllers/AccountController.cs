@@ -1,4 +1,5 @@
-﻿using Quick.Application.Admin;
+﻿using Microsoft.Practices.Unity;
+using Quick.Application.Admin;
 using Quick.Framework.Tool;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,12 @@ using System.Web.Mvc;
 
 namespace Quick.WebUI.Admin.Controllers
 {
-    [Export]
+
     public class AccountController : Controller
     {
-        [Import]
+         [Dependency]
         private IUserService UserService { get; set; }
-        //public LoginController(IUserService userService)
+        //public AccountController(IUserService userService)
         //{ 
 
         //    _userService = userService;

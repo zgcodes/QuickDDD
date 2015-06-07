@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Data.Entity;
+using Microsoft.Practices.Unity;
 
 namespace Quick.WebUI.Admin
 {
@@ -36,6 +37,10 @@ namespace Quick.WebUI.Admin
             DirectoryCatalog catalog = new DirectoryCatalog(AppDomain.CurrentDomain.SetupInformation.PrivateBinPath);
             MefDependencySolver solver = new MefDependencySolver(catalog);
             DependencyResolver.SetResolver(solver);
+
+            //Unity注入 Ioc
+            IUnityContainer container = new DependencyRegisterType().GetUnityContainer();
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
             
             //初始化策略

@@ -1,6 +1,7 @@
 ﻿using Quick.Domain;
 using Quick.Framework.Tool;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 
@@ -15,6 +16,8 @@ namespace Quick.Application.Admin
         #region 公共方法
 
         OperationResult Login(UserDto model);
+
+        IList<UserDto> GetAll();
 
         #endregion
 	}

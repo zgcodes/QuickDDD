@@ -12,7 +12,7 @@ namespace Quick.Domain
     public interface IRepository<TEntity>
         where TEntity :Entity
     {
-        IEnumerable<TEntity> Get(
+        IQueryable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "");

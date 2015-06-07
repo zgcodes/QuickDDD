@@ -1,9 +1,9 @@
 ﻿using Quick.Domain;
 using Quick.Framework.Tool;
 using Quick.Repositories;
-using System;
-using System.ComponentModel.Composition;
+using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Practices.Unity;
 
 
 
@@ -12,12 +12,12 @@ namespace Quick.Application.Admin
 	/// <summary>
     /// 服务层实现类 —— UserService
     /// </summary>
-    [Export(typeof(IUserService))]
     public class UserService : ServiceBase,IUserService 
     {
-        [Import]
+        [Dependency]
         public IUserRepository UserRepository {get;set;}
-      
+
+       // public IUnitOfWork UnitOfWork { get; set; }
 		
         
         #region 公共方法
@@ -34,6 +34,11 @@ namespace Quick.Application.Admin
         //OperationResult Delete(object id);
 
         #endregion
+
+        public IList<UserDto> GetAll() {
+            IList<User> list = UserRepository.Get().ToList();
+            return list.MapToList<UserDto>();
+        }
 
          //<summary>
          //用户登录
@@ -54,5 +59,7 @@ namespace Quick.Application.Admin
             }
             return new OperationResult(OperationResultType.Success, "登录成功。", user);
         }
+
+
 	}
 }

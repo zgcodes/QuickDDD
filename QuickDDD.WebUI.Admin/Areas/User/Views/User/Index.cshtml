@@ -1,5 +1,32 @@
 ﻿@{
     ViewBag.Title = "用户管理";
+    Layout = "~/Views/Shared/_Index_Layout.cshtml";
+    
+  
 }
 
-<h2>用户管理 Index</h2>
+<table id="List"></table>
+<script type="text/javascript">
+    $(function () {
+        $('#List').datagrid({
+            url: '/User/User/GetList',
+            width: $(window).width() - 10,
+            methord: 'post',
+            height: $(window).height() -35,
+            fitColumns: true,
+            sortName: 'Id',
+            sortOrder: 'desc',
+            idField: 'Id',
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            rownumbers: true,//行号
+            columns: [[
+                { field: 'Id', title: 'ID', width: 80 },
+                { field: 'LoginName', title: '用户名', width: 120 },
+                { field: 'Email', title: '电子邮箱', width: 80, align: 'right' },
+                { field: 'Phone', title: '手机号', width: 80, align: 'right' },
+                { field: 'CreateTime', title: '创建时间', width: 60, align: 'center' }
+            ]]
+        });
+    });
+</script>
