@@ -17,7 +17,15 @@ namespace Quick.Application.Admin
 
         OperationResult Login(UserDto model);
 
-        IList<UserDto> GetAll();
+        QueryRequestOut<UserDto> GetAll(UserQueryInput input);
+
+        UserDto GetById(Guid id);
+
+        void Delete(Guid id);
+
+        void Create(UserDto model);
+
+        void Update(UserDto model);
 
         #endregion
 	}

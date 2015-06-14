@@ -143,16 +143,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\HtmlHelper\ButtonHelper.cs" />
     <Compile Include="Helper\Ioc\DependencyRegisterType.cs" />
     <Compile Include="Helper\Ioc\MefDependencySolver.cs" />
     <Compile Include="Helper\Ioc\UnityDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\BreadCrumbNavModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\AbpSite.css" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-modal-bs3patch.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-modal.css" />
     <Content Include="Content\bootstrap\css\bootstrap.css" />
     <Content Include="Content\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\Images\account.jpg" />
@@ -323,6 +328,8 @@
     <Content Include="Content\themes\metro\tree.css" />
     <Content Include="Content\themes\metro\validatebox.css" />
     <Content Include="Content\themes\metro\window.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Areas\User\Views\Web.config" />
     <Content Include="Areas\User\Views\User\Index.cshtml" />
@@ -332,6 +339,13 @@
     <Content Include="Content\themes\blue\images\Thumbs.db" />
     <Content Include="Content\themes\gray\images\Thumbs.db" />
     <Content Include="Content\themes\metro\images\Thumbs.db" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
+    <Content Include="Scripts\bootstrap-modal.min.js" />
+    <Content Include="Scripts\bootstrap-modalmanager.js" />
+    <Content Include="Scripts\bootstrap-modalmanager.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\easyui\src\jquery.accordion.js.baiduyun.uploading.cfg" />
     <Content Include="Scripts\easyui\src\jquery.calendar.js.baiduyun.uploading.cfg" />
     <Content Include="Scripts\easyui\src\jquery.combobox.js.baiduyun.uploading.cfg" />
@@ -410,6 +424,41 @@
     <Content Include="Scripts\easyui\src\jquery.slider.js" />
     <Content Include="Scripts\easyui\src\jquery.tabs.js" />
     <Content Include="Scripts\easyui\src\jquery.window.js" />
+    <Content Include="Scripts\easyui\Xiucai.EasyUI.Extensions.js" />
+    <Content Include="Scripts\extensions\abp.js" />
+    <Content Include="Scripts\extensions\abp.upload.js" />
+    <Content Include="Scripts\extensions\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\extensions\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\extensions\bootstrap-datetimepicker.zh-CN.js" />
+    <Content Include="Scripts\extensions\jquery.blockUI.js" />
+    <Content Include="Scripts\extensions\jquery.Jcrop.min.js" />
+    <Content Include="Scripts\extensions\site.js" />
+    <Content Include="Scripts\extensions\toastr.js" />
+    <Content Include="Scripts\extensions\toastr.min.js" />
+    <Content Include="Scripts\extensions\webuploader\bg.png" />
+    <Content Include="Scripts\extensions\webuploader\icons.png" />
+    <Content Include="Scripts\extensions\webuploader\image.png" />
+    <Content Include="Scripts\extensions\webuploader\multi-upload.css" />
+    <Content Include="Scripts\extensions\webuploader\progress.png" />
+    <Content Include="Scripts\extensions\webuploader\style.css" />
+    <Content Include="Scripts\extensions\webuploader\success.png" />
+    <Content Include="Scripts\extensions\webuploader\Uploader.swf" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.css" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.custom.js" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.custom.min.js" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.fis.js" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.flashonly.js" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.flashonly.min.js" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.html5only.js" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.html5only.min.js" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.js" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.min.js" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.noimage.js" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.noimage.min.js" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.nolog.js" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.nolog.min.js" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.withoutimage.js" />
+    <Content Include="Scripts\extensions\webuploader\webuploader.withoutimage.min.js" />
     <Content Include="Scripts\home.js" />
     <Content Include="Scripts\jquery.easyui.min.js" />
     <Content Include="Scripts\jquery.form.js" />
@@ -420,6 +469,7 @@
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\quickDDD.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -436,6 +486,7 @@
     <Folder Include="Areas\User\Models\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\easyui\demo\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -480,7 +531,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -491,6 +541,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Index_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\User\Views\User\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\User\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\extensions\webuploader\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\toastr.less" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

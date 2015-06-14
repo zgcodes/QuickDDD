@@ -4,6 +4,7 @@ using Quick.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Practices.Unity;
+using System;
 
 
 
@@ -22,22 +23,37 @@ namespace Quick.Application.Admin
         
         #region 公共方法
 
-        //public OperationResult Insert(UserDto model);
+        public void Create(UserDto model)
+        {
+            model.Enabled = false;
+            model.PwdErrorCount = 0;
+            model.LoginCount = 0;
+            model.RegisterTime = DateTime.Now;
+            UserRepository.Insert(model.MapTo<User>());
+        }
 
-        //OperationResult Update(UserDto model);
+        public void Update(UserDto model)
+        {
+            var entity = UserRepository.GetByID(model.Id);
+            UserRepository.Update(model.MapTo(entity));
+        }
 
-        ///// <summary>
-        ///// 逻辑删除
-        ///// </summary>
-        ///// <param name="Id"></param>
-        ///// <returns></returns>
-        //OperationResult Delete(object id);
+        public UserDto GetById(Guid id) {
+            var entity = UserRepository.GetByID(id);
+            return entity.MapTo<UserDto>();
+        }
 
         #endregion
 
-        public IList<UserDto> GetAll() {
-            IList<User> list = UserRepository.Get().ToList();
-            return list.MapToList<UserDto>();
+        public QueryRequestOut<UserDto> GetAll(UserQueryInput input)
+        {
+            return UserRepository.Get().ToOutPut<UserDto>(input);
+        }
+
+
+        public void Delete(Guid id)
+        {
+            UserRepository.Delete(id);
         }
 
          //<summary>

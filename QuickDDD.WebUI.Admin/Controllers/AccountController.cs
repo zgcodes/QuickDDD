@@ -13,14 +13,8 @@ namespace Quick.WebUI.Admin.Controllers
 
     public class AccountController : Controller
     {
-         [Dependency]
-        private IUserService UserService { get; set; }
-        //public AccountController(IUserService userService)
-        //{ 
-
-        //    _userService = userService;
-        //}
-
+        [Dependency]
+        public IUserService UserService { get; set; }
 
         public ActionResult Index()
         {

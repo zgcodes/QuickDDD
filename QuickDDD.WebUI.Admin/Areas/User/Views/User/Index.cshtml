@@ -1,21 +1,32 @@
 ﻿@{
     ViewBag.Title = "用户管理";
-    Layout = "~/Views/Shared/_Index_Layout.cshtml";
-    
-  
 }
+<div class="mvctool">
+    <input id="txtQuery" type="text" class="searchText">
+    @Html.ToolButton("btnQuery", "icon-search", "查询", true)
+    @Html.ToolButton("btnCreate", "icon-add", "新增", true)
+    @Html.ToolButton("btnEdit", "icon-edit", "编辑", true)
+    @Html.ToolButton("btnDetails", "icon-details", "详细", true)
+    @Html.ToolButton("btnDelete", "icon-remove", "删除", true)
+    @Html.ToolButton("btnExport", "icon-export", "导出", true)
+</div>
+
 
 <table id="List"></table>
 <script type="text/javascript">
+
     $(function () {
         $('#List').datagrid({
             url: '/User/User/GetList',
             width: $(window).width() - 10,
             methord: 'post',
-            height: $(window).height() -35,
+            height: $(window).height() - 35,
             fitColumns: true,
+            pagination:true,
             sortName: 'Id',
             sortOrder: 'desc',
+            pageSize: 10,
+            pageList: [10,15, 20, 30, 40, 50],
             idField: 'Id',
             striped: true, //奇偶行是否区分
             singleSelect: true,//单选模式
@@ -28,5 +39,65 @@
                 { field: 'CreateTime', title: '创建时间', width: 60, align: 'center' }
             ]]
         });
+
+
+        //增删改
+        //添加
+        $("#btnCreate").click(function () {
+            bootbox.dialog({
+                width: "800px",
+                height: "600px",
+                title: "添加",
+                href: "/User/User/Edit",
+                callback: function (opts) {
+               
+                }
+            });
+        })
+
+        //编辑
+        $("#btnEdit").click(function () {
+            var row = $('#List').datagrid('getSelected');
+            if(row == null){
+                bootbox.error("请选择一行！");
+                return;
+            }
+            bootbox.dialog({
+                width: "800px",
+                height: "600px",
+                title: "编辑",
+                href: "/User/User/Edit?id=" + row.Id,
+                callback: function (opts) {
+                    exports.dialog.close();
+                    $("#List").datagrid('load');
+                }
+            });
+        })
+
+        //删除
+        $("#btnDelete").on('click', function () {
+            var row = $('#List').datagrid('getSelected');
+            if (!row) {
+                bootbox.error("请选择一行进行操作!");
+                return;
+            } 
+            bootbox.confirm("您确认要删除选中的行吗？", function (result) {
+                if (!result) return; //取消
+                var data = { id: row.Id };
+                $.ajax({
+                    url: "/User/User/Delete",
+                    type: "Post",
+                    data: data,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == 1) {
+                            bootbox.success("删除成功!");
+                            $("#List").datagrid('load');
+                        }
+                    }
+                });
+            });
+        });
+
     });
 </script>

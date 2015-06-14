@@ -9,10 +9,6 @@ namespace Quick.Application.Admin
 {
     public class UserDto : Entity
     {
-        public UserDto()
-        {
-			this.UserRole = new List<UserRole>();
-        }
 
         public string LoginName { get; set; }
         public string LoginPwd { get; set; }

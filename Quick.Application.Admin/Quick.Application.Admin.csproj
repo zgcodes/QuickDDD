@@ -67,7 +67,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMapperHelper.cs" />
+    <Compile Include="Dto\UserQueryInput.cs" />
     <Compile Include="ServiceBase.cs" />
     <Compile Include="Dto\RoleDto.cs" />
     <Compile Include="Dto\UserDto.cs" />

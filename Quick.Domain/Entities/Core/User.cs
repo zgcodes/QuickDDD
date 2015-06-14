@@ -8,21 +8,17 @@ namespace Quick.Domain
 {
     public class User : Entity
     {
-        public User()
-        {
-			this.UserRole = new List<UserRole>();
-        }
 
-        public string LoginName { get; set; }
-        public string LoginPwd { get; set; }
-        public string FullName { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public bool Enabled { get; set; }
-        public int PwdErrorCount { get; set; }
-        public int LoginCount { get; set; }
-        public DateTime? RegisterTime { get; set; }
-        public DateTime? LastLoginTime { get; set; }
+        public virtual string LoginName { get; set; }
+        public virtual string LoginPwd { get; set; }
+        public virtual string FullName { get; set; }
+        public virtual string Email { get; set; }
+        public virtual string Phone { get; set; }
+        public virtual bool Enabled { get; set; }
+        public virtual int PwdErrorCount { get; set; }
+        public virtual int LoginCount { get; set; }
+        public virtual DateTime? RegisterTime { get; set; }
+        public virtual DateTime? LastLoginTime { get; set; }
 
         public virtual ICollection<UserRole> UserRole { get; set; }
     }

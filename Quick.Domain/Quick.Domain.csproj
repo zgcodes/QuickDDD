@@ -67,7 +67,6 @@
     <Compile Include="Entities\Core\Role.cs" />
     <Compile Include="Entities\Core\User.cs" />
     <Compile Include="Entities\Core\UserRole.cs" />
-    <Compile Include="Entity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IRoleRepository.cs" />

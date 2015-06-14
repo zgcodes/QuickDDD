@@ -1,16 +1,28 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Main</title>
-
+     @*本模板用来引用所有frame中的界面（添加修改等）公用的js和css
+     *@
     <script src="@Url.Content("~/Scripts/jquery.min.js")" type="text/javascript"></script>
+      @*@Scripts.Render("~/bundles/bootstrap") TODO:这里没法引用Bundel*@
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-modal.min.js"></script>
+    <script src="~/Scripts/bootstrap-modalmanager.min.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
      <script src="@Url.Content("~/Scripts/jquery.easyui.min.js")" type="text/javascript"></script>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/themes/blue/css")
 </head>
 <body>
     <div style="padding:5px 5px 0px 5px;">
-        @RenderBody()
+        @RenderBody()  @*此处内容会在frame中打开，所以给它加了这个模板，给所有的frame中的Index和Edit引用需要的样式和js，
+        也可以不用这个，设置一个通用的Layout，主页的Index使用它（现在主页js是内部引用js和css，且不会和frame中界面共享），frame中的界面也使用它，反正都是引用js和css，
+        在一个地方定义“通用的”比较好。
+        *@
     </div>
+
 </body>
 </html>

@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace Quick.Application.Admin
+namespace Quick.Framework.Tool
 {
     /// <summary>
     /// AutoMapper扩展帮助类
@@ -14,7 +14,7 @@ namespace Quick.Application.Admin
     public static class AutoMapperHelper
     {
         /// <summary>
-        ///  类型映射
+        ///  类型映射,返回目标类型
         /// </summary>
         public static T MapTo<T>(this object obj)
         {
@@ -22,6 +22,7 @@ namespace Quick.Application.Admin
             Mapper.CreateMap(obj.GetType(), typeof(T));
             return Mapper.Map<T>(obj);
         }
+
         /// <summary>
         /// 集合列表类型映射
         /// </summary>
@@ -45,14 +46,16 @@ namespace Quick.Application.Admin
             return Mapper.Map<List<TDestination>>(source);
         }
         /// <summary>
-        /// 类型映射
+        /// 类型映射，拷贝数据到目标对象(修改时用到)（TODO:如果原对象属性值为null，而目标属性有值，则目标值会被覆盖，这样不允许。
+        /// 解决办法：##限制CreateTime等属性不拷贝，这就需要把Entity类放到基础设施层了）
         /// </summary>
         public static TDestination MapTo<TSource, TDestination>(this TSource source, TDestination destination)
-            where TSource : class
-            where TDestination : class
+            where TSource : Entity
+            where TDestination : Entity
         {
             if (source == null) return destination;
-            Mapper.CreateMap<TSource, TDestination>();
+            Mapper.CreateMap<TSource, TDestination>()
+                .ForMember(dest =>dest.CreateTime, opt => opt.Ignore());
             return Mapper.Map(source, destination);
         }
         /// <summary>

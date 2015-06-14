@@ -1,49 +1,17 @@
 ﻿<!DOCTYPE html>
 <html lang="zh">
-    <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - 我的 ASP.NET MVC 应用程序</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("将你的徽标放置在此处", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                            <li>@Html.ActionLink("关于", "About", "Home")</li>
-                            <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - 我的 ASP.NET MVC 应用程序</p>
-                </div>
-            </div>
-        </footer>
+<head>
+    @*通用模板，用来引用js和css文件（也就是除了frame中的界面之外的小部分界面用到），
+    如果某页面用到的的js这里没有，那么它得自己引用，或者用另外的模板（frame中的界面就不用了另外的模板）*@
+    <title>QuickDDD</title>
+    <meta name="viewport" content="width=device-width" />
+     <script src="@Url.Content("~/Scripts/jquery.min.js")" type="text/javascript"></script>
+     <script src="@Url.Content("~/Scripts/jquery.easyui.min.js")" type="text/javascript"></script>
+     @Styles.Render("~/Content/css")
+     @Styles.Render("~/Content/themes/gray/css")
+     @Scripts.Render("~/bundles/home")
+</head>
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+        @RenderBody()
+
 </html>

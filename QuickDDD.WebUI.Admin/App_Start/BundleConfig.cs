@@ -15,6 +15,19 @@ namespace Quick.WebUI.Admin
             bundles.Add(new ScriptBundle("~/bundles/home").Include(
                        "~/Scripts/home.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                  "~/Scripts/bootstrap.js",
+                   "~/Scripts/bootstrap-modalmanager.min.js",
+                        "~/Scripts/bootstrap-modal.min.js",
+                        "~/Scripts/bootbox.min.js",
+                        "~/Scripts/extensions/bootstrap-datetimepicker.min.js",
+                        "~/Scripts/extensions/bootstrap-datetimepicker.zh-CN.js",
+                        "~/Scripts/extensions/jquery.blockUI.js",
+                         "~/Scripts/extensions/toastr.min.js",
+                        "~/Scripts/extensions/abp.js",
+                        "~/Scripts/extensions/jquery.Jcrop.min.js",
+                        "~/Scripts/extensions/site.js"));
+
             //easyui
             bundles.Add(new StyleBundle("~/Content/themes/blue/css").Include("~/Content/themes/blue/easyui.css"));
             bundles.Add(new StyleBundle("~/Content/themes/gray/css").Include("~/Content/themes/gray/easyui.css"));
@@ -28,8 +41,16 @@ namespace Quick.WebUI.Admin
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
-
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                     "~/Content/site.css",
+   
+                      "~//Content/bootstrap/css/bootstrap-modal-bs3patch.css",
+                      "~/Content/bootstrap/css/bootstrap-modal.css",
+                      
+                      "~/Content/bootstrap-datetimepicker.min.css",
+                        "~/Content/toastr.min.css",
+                         "~/Content/bootstrap-theme.min.css",
+                           "~/Content/AbpSite.css"));
         }
     }
 }

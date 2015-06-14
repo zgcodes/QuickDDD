@@ -18,16 +18,53 @@ namespace Quick.WebUI.Admin.Areas.User.Controllers
             return View();
         }
 
-        public ActionResult GetList()
+        public JsonResult GetList(UserQueryInput input)
         {
-            var list = UserService.GetAll();
+            var list = UserService.GetAll(input);
 
             var json = new
             {
-                total = list.Count,
-                rows = list.ToArray()
+                total = list.total,
+                rows = list.rows
             };
             return Json(json, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Edit(Guid? id)
+        {
+            UserDto model = null;
+            if (!id.HasValue)  //新建
+            {
+                model = new UserDto();
+                ViewBag.ActionName = "Create";
+            }
+            else  //编辑
+            {
+                model = UserService.GetById(id.Value);
+                ViewBag.ActionName = "Update";
+            }
+            return View(model);
+        }
+
+        public JsonResult Delete(Guid id)
+        {
+            UserService.Delete(id);
+            return Json(1, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult Create(UserDto model)
+        {
+            UserService.Create(model);
+            return Json(1, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult Update(UserDto model)
+        {
+            UserService.Update(model);
+            return Json(1, JsonRequestBehavior.AllowGet);
+
         }
 
     }

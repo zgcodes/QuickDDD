@@ -1,4 +1,5 @@
 ﻿using Quick.Domain;
+using Quick.Framework.Tool;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -18,7 +19,7 @@ namespace Quick.Repositories
         public EfRepositoryBase(QuickDbContext context)
         {
             this.context = context;
-            this.dbSet = context.Set<TEntity>();
+            this.dbSet = context.Set<TEntity>();//如果DbSet不用泛型，定义了DbSet entity，那就是：context.entity
 
         }
 
@@ -58,7 +59,12 @@ namespace Quick.Repositories
 
         public virtual void Insert(TEntity entity)
         {
+            entity.Id = Guid.NewGuid();
+            entity.CreateTime = DateTime.Now;
             dbSet.Add(entity);
+            context.SaveChanges();//TODO:提交数据库。注意，如果多次“数据操作（insert，undate,delete）”后再提交这一个公用的context，就可以作为事务了，
+            //所以，在这里保存不合适,
+            //需要用工作单元来保存
         }
 
         public virtual void Delete(object id)
@@ -74,12 +80,14 @@ namespace Quick.Repositories
                 dbSet.Attach(entityToDelete);
             }
             dbSet.Remove(entityToDelete);
+            context.SaveChanges();//保存
         }
 
         public virtual void Update(TEntity entityToUpdate)
         {
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;
+            context.SaveChanges();//保存
         }
     }
 }

@@ -12,7 +12,7 @@ h1, h2, h3, h4, h5, h6 {font-size: 100%;font-weight: normal;}
 cite, em {font-style: normal;}
 input[type="button"], input[type="reset"], input[type="submit"], input[type="radio"], input[type="checkbox"] {cursor: pointer;}
 input[type="text"],input[type="password"],textarea{border:1px solid #ccc}
-input[type="text"],input[type="password"]{ padding:2px; height:16px;}
+/*input[type="text"],input[type="password"]{ padding:2px; height:16px;}*/
 .clearfix:after {clear: both;content: ".";display: block;height: 0;visibility: hidden;}
 label[disabled="true"], label[disabled=""], label[disabled="disabled"] {color: #000000;}
 a:link, a:visited {text-decoration: none;}
@@ -303,3 +303,22 @@ span.inter-ps span{ display:inline-block; padding-right:5px}
 .pages a { text-decoration:none;padding: 2px 6px; margin:0 1px; border: 1px solid #ddd;}
 .pages a:hover { background-color: #ff8800; color:#fff; border:1px solid #ff8800; text-decoration:none;font-weight:normal;}
 .pages input{ width:40px; border:1px solid #c1d2e2; text-align:center; padding:2px}
+
+
+
+/*补充*/
+/*弹出框*/
+.modal-overflow > .modal-header + .modal-body, .modal-frame > .modal-header + .modal-body {
+  top: 46px;
+}
+.modal-overflow > .modal-body, .modal-frame > .modal-body {
+  position: absolute;
+  width: 100%;
+  top: 4px;
+  bottom: 3px;
+  overflow: auto !important;
+}
+.modal-body {
+  min-height: 120px;
+  overflow: auto !important;
+}
